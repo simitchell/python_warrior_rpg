@@ -12,41 +12,50 @@ class Warrior:
 # hero class constructor (child of warrior)
 class Hero(Warrior):
     def __init__(self, name, health, power, attributes, weapon):
-        # super().__init__(name, health, power, attributes, weapon)
+        self.name = name
+        self.health = health
+        self.power = power
         self.attributes = attributes
         self.weapon = weapon
 
     # hero greet
     def greet(self):
-        print(f"I am {self.name}, a hero")
+        print(f"\nI am {self.name}, a hero")
 
     # hero announce
     def announce(self):
-        print(f"Listen as I announce myself - {self.name}")
+        print(f"\nListen as I announce myself - {self.name}")
 
     # hero attack
     def attack(self):
-        print(f"{self} executes an attack")
+        print(f"\n{self} executes an attack")
 
 # villain class constructor (child of warrior)
 class Villain(Warrior):
     def __init__(self, name, health, power, attributes, weapon):
-        # super().__init__(name, health, power, attributes, weapon)
+        super().__init__(name, health, power)
         self.attributes = attributes
         self.weapon = weapon
 
     # villain greet
     def greet(self):
-        print(f"I offer you a greeting.  I am {self.name}, a villain.")
+        print(f"\nI offer you a greeting.  I am {self.name}, a villain.")
 
     # villain annoucne
     def announce(self):
-        print(f"I announce myself to you in a villainous manner.  {self.name}")
+        print(f"\nI announce myself to you in a villainous manner.  {self.name}")
 
     # villain attack
     def attack(self):
-        print(f"{self.name} plays dirty and executes an attack")
+        print(f"\n{self.name} plays dirty and executes an attack")
 
+thor = Hero("Thor", 30, 15, "Asgardian God of Thudner", "Mjolnir")
+sam = Hero("Sam", "Master of Python", 35, 5, "MacBook Pro")
+frodo = Hero("Frodo Baggins", "Ring-bearer", 60, 35, "The One Ring")
+
+javascript = Villain("JavaScript", 30, 10, "complicated", "Document Object Model")
+zombie = Villain("The Mysterious Undead", float('inf'), 2, None, None)
+vader = Villain("Darth Vader", 60, 25, "Sith Lord", "Force Choke")
 
 # select a hero
 def hero_select():
@@ -58,22 +67,17 @@ def hero_select():
     print("> ",)
     user_input = input()
     if user_input == "1":
-        # print("Your hero is Thor")
-        thor = Hero("Thor", 30, 15, "Asgardian God of Thudner", "Mjolnir")
         myhero = thor
-        greet(myhero)
     elif user_input == "2":
-        # print("Your hero is Sam")
-        sam = Hero("Sam", "Master of Python", 35, 5, "MacBook Pro")
         myhero = sam
     elif user_input == "3":
-        # print("Your hero is Frodo Baggins")
-        frodo = Hero("Frodo Baggins", "Ring-bearer", 60, 35, "The One Ring")
         myhero = frodo
     else:
-        print()
-        print("Invalid input %r" % user_input)
+        print("\nInvalid input %r" % user_input)
+    myhero.greet()
     return myhero
+
+hero_select()
 
 # select a villain
 def villain_select():
@@ -85,21 +89,14 @@ def villain_select():
     print("> ",)
     user_input = input()
     if user_input == "1":
-        # print("Your villain is JavaScript")
-        javascript = Villain("JavaScript", 30, 10, "complicated", "Document Object Model")
         myvillain = javascript
     elif user_input == "2":
-        # print("Your villain is The Mysterious Undead")
-        zombie = Villain("The Mysterious Undead", float('inf'), 2, None, None)
         myvillain = zombie
     elif user_input == "3":
-        # print("Your villain is Darth Vader")
-        vader = Villain("Darth Vader", 60, 25, "Sith Lord", "Force Choke")
         myvillain = vader
     else:
-        print()
-        print("Invalid input %r" % user_input)
+        print("\nInvalid input %r" % user_input)
+    myvillain.greet()
     return myvillain
 
-hero_select()
 villain_select()
