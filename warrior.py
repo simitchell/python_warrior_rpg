@@ -27,22 +27,28 @@ class Hero(Warrior):
 
     # hero greet
     def greet(self):
-        print(f"\nI am {self.name}, a hero")
+        print(f"\nI am {self.name} the {self.attributes}, a hero of mythical proportions.  ")
 
     # hero announce
     def announce(self):
-        print(f"\nMy heroics know no bounds.  Villains fear me, other heroes wanna be me. - {self.name}")
+        print(f"\nMy heroics know no bounds.  \nVillains fear me, other heroes wanna be me.  \nI wield the power of {self.weapon} and you will feel my fury.  \n- {self.name}")
 
     # hero attack
     def attack(self, other):
-        # print("test")
-        # print(f"{other.name}")
         other.health -= self.power
 
         if self.alive():
-            print(f"\n{self.name} executes an attack.  {other.name} takes damage")
+            print(f"\n{self.name} executes an attack, which does %d damage to {myvillain.name}." % self.power)
         else:
-            print(f"\n{self.name} has died.  Game is over, go home.  Life sucks.")
+            print(f"\n{self.name} has died.  \nGame is over, go home.  \nLife sucks.")
+
+    # hero do nothing
+    def nothing(self):
+        pass
+
+    # hero flee
+    def flee(self):
+        print(f"\n{self.name} has chosen to flee.  \nGood luck in life, coward.  \nYou piece of crap.")
 
 # villain class constructor (child of warrior)
 class Villain(Warrior):
@@ -53,15 +59,15 @@ class Villain(Warrior):
 
     # villain greet
     def greet(self):
-        print(f"\nI offer you a greeting.  I am {self.name}, a villain.")
+        print(f"\nI offer you a greeting.  \nI am {self.name} the {self.attributes}, a villain.")
 
     # villain annoucne
     def announce(self):
-        print(f"\nI shall corrupt the world!  Noone shall stop me! - {self.name}")
+        print(f"\nI shall corrupt the world!  \nWith the power of my {self.weapon}, noone shall stop me! \n- {self.name}")
 
     # villain attack
     def attack(self, other):
-        print(f"\n{self.name} plays dirty and executes an attack.  It strikes {other.name}")
+        print(f"\n{self.name} plays dirty and executes an attack.  \nIt strikes {other.name} and does %d damage." % self.power)
 
 # instances of hero class
 thor = Hero("Thor", 30, 15, "Asgardian God of Thudner", "Mjolnir")
@@ -112,8 +118,24 @@ myvillain.announce()
 
 
 while myhero.alive() and myvillain.alive():
-    myhero.attack(myvillain)
-
-
-
-
+    print("\nWhat do you want to do?")
+    print("1. Launch attack")
+    print("2. Do nothing")
+    print("3. Flee")
+    print("> ",)
+    user_input = input()
+    if user_input == "1" and myhero.alive() and myvillain.alive():
+        myhero.attack(myvillain)
+        myvillain.attack(myhero)
+        if myvillain.alive():
+            myhero.print_status(myvillain)
+        elif user_input == "2":
+            # myhero.nothing(myvillain)
+            myvillain.attack(myhero)
+            if myhero.alive():
+                myhero.print_status(myvillain)
+        elif user_input == "3":
+            myhero.flee(myvillain)
+            break
+        else:
+            print("Invalid input %r" % user_input)
