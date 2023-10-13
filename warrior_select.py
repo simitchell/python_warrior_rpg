@@ -12,9 +12,7 @@ class Warrior:
 # hero class constructor (child of warrior)
 class Hero(Warrior):
     def __init__(self, name, health, power, attributes, weapon):
-        self.name = name
-        self.health = health
-        self.power = power
+        super().__init__(name, health, power)
         self.attributes = attributes
         self.weapon = weapon
 
@@ -24,7 +22,7 @@ class Hero(Warrior):
 
     # hero announce
     def announce(self):
-        print(f"\nListen as I announce myself - {self.name}")
+        print(f"\nMy heroics know no bounds.  Villains fear me, other heroes wanna be me. - {self.name}")
 
     # hero attack
     def attack(self):
@@ -43,16 +41,18 @@ class Villain(Warrior):
 
     # villain annoucne
     def announce(self):
-        print(f"\nI announce myself to you in a villainous manner.  {self.name}")
+        print(f"\nI shall corrupt the world!  Noone shall stop me! - {self.name}")
 
     # villain attack
     def attack(self):
         print(f"\n{self.name} plays dirty and executes an attack")
 
+# instances of hero class
 thor = Hero("Thor", 30, 15, "Asgardian God of Thudner", "Mjolnir")
 sam = Hero("Sam", "Master of Python", 35, 5, "MacBook Pro")
 frodo = Hero("Frodo Baggins", "Ring-bearer", 60, 35, "The One Ring")
 
+# instances of villain class
 javascript = Villain("JavaScript", 30, 10, "complicated", "Document Object Model")
 zombie = Villain("The Mysterious Undead", float('inf'), 2, None, None)
 vader = Villain("Darth Vader", 60, 25, "Sith Lord", "Force Choke")
@@ -75,9 +75,8 @@ def hero_select():
     else:
         print("\nInvalid input %r" % user_input)
     myhero.greet()
+    myhero.announce()
     return myhero
-
-hero_select()
 
 # select a villain
 def villain_select():
@@ -97,6 +96,13 @@ def villain_select():
     else:
         print("\nInvalid input %r" % user_input)
     myvillain.greet()
+    myvillain.announce()
     return myvillain
 
+hero_select()
+
 villain_select()
+
+
+
+
