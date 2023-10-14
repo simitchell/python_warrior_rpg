@@ -9,19 +9,26 @@ class Warrior:
     def alive(self):
         return self.health > 0
     
-    # print status - an instance method
+   # print status - an instance method
     def print_status(self, other):
         if other.alive():
-            print (f"\n{self.name} health: {self.health}")
+            print()
+            print (f"{self.name} health: {self.health}")
         if self.alive():
-            print (f"\n{other.name} health: {other.health}")
+            print()
+            print (f"{other.name} health: {other.health}")
         else:
-            pass
+            print()
+            print(f"The {self.name} has died.  The world is now a much darker place.")
+            print()
     
 # hero class constructor (child of warrior)
 class Hero(Warrior):
     def __init__(self, name, health, power, attributes, weapon):
-        super().__init__(name, health, power)
+        # super().__init__(name, health, power)
+        self.name = name
+        self.health = health
+        self.power = power
         self.attributes = attributes
         self.weapon = weapon
 
@@ -44,16 +51,20 @@ class Hero(Warrior):
 
     # hero do nothing
     def nothing(self):
-        pass
+        myvillain.attack(myhero)
 
     # hero flee
     def flee(self):
+        print("test")
         print(f"\n{self.name} has chosen to flee.  \nGood luck in life, coward.  \nYou piece of crap.")
 
 # villain class constructor (child of warrior)
 class Villain(Warrior):
     def __init__(self, name, health, power, attributes, weapon):
-        super().__init__(name, health, power)
+        # super().__init__(name, health, power)
+        self.name = name
+        self.health = health
+        self.power = power
         self.attributes = attributes
         self.weapon = weapon
 
@@ -80,8 +91,7 @@ zombie = Villain("The Mysterious Undead", float('inf'), 2, None, None)
 vader = Villain("Darth Vader", 60, 25, "Sith Lord", "Force Choke")
 
 # select a hero
-print()
-print("Select a hero")
+print("\nSelect a hero")
 print("1. Thor")
 print("2. Sam")
 print("3. Frodo Baggins")
@@ -127,15 +137,16 @@ while myhero.alive() and myvillain.alive():
     if user_input == "1" and myhero.alive() and myvillain.alive():
         myhero.attack(myvillain)
         myvillain.attack(myhero)
-        if myvillain.alive():
+        myhero.print_status(myvillain)
+        # if myvillain.alive():
+        #     myvillain.print_status(myhero)
+        # if myhero.alive():
+        #     myhero.print_status(myvillain)
+    elif user_input == "2":
+        # myhero.nothing(myvillain)
+        if myhero.alive():
             myhero.print_status(myvillain)
-        elif user_input == "2":
-            # myhero.nothing(myvillain)
-            myvillain.attack(myhero)
-            if myhero.alive():
-                myhero.print_status(myvillain)
-        elif user_input == "3":
-            myhero.flee(myvillain)
-            break
-        else:
-            print("Invalid input %r" % user_input)
+    elif user_input == "3":
+        myhero.flee()
+    else:
+        print("Invalid input %r" % user_input)
