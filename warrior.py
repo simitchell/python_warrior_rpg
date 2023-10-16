@@ -19,7 +19,7 @@ class Warrior:
             print (f"{other.name} health: {other.health}")
         else:
             print()
-            print(f"The {self.name} has died.  The world is now a much darker place.")
+            print(f"{self.name} has died.  The world is now a much darker place.")
             print()
     
 # hero class constructor (child of warrior)
