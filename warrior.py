@@ -25,10 +25,10 @@ class Warrior:
 # hero class constructor (child of warrior)
 class Hero(Warrior):
     def __init__(self, name, health, power, attributes, weapon):
-        # super().__init__(name, health, power)
-        self.name = name
-        self.health = health
-        self.power = power
+        super().__init__(name, health, power)
+        # self.name = name
+        # self.health = health
+        # self.power = power
         self.attributes = attributes
         self.weapon = weapon
 
@@ -62,10 +62,10 @@ class Hero(Warrior):
 # villain class constructor (child of warrior)
 class Villain(Warrior):
     def __init__(self, name, health, power, attributes, weapon):
-        # super().__init__(name, health, power)
-        self.name = name
-        self.health = health
-        self.power = power
+        super().__init__(name, health, power)
+        # self.name = name
+        # self.health = health
+        # self.power = power
         self.attributes = attributes
         self.weapon = weapon
 
