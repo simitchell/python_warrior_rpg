@@ -57,6 +57,7 @@ class Hero(Warrior):
     def flee(self):
         print("test")
         print(f"\n{self.name} has chosen to flee.  \nGood luck in life, coward.  \nYou piece of crap.")
+        exit()
 
 # villain class constructor (child of warrior)
 class Villain(Warrior):
@@ -78,12 +79,18 @@ class Villain(Warrior):
 
     # villain attack
     def attack(self, other):
-        print(f"\n{self.name} plays dirty and executes an attack.  \nIt strikes {other.name} and does %d damage." % self.power)
+        other.health -= self.power
+        if self.alive():
+            print(f"\n{self.name} plays dirty and executes an attack.  \nIt strikes {other.name} and does %d damage." % self.power)
+
+        else:
+            print(f"\n{self.name} has died.  \nThe sky opens up to a beautiful blue hue.  \nHope wells up inside of our hero.  \nMaybe everything will be ok after all.")
+
 
 # instances of hero class
 thor = Hero("Thor", 30, 15, "Asgardian God of Thudner", "Mjolnir")
-sam = Hero("Sam", "Master of Python", 35, 5, "MacBook Pro")
-frodo = Hero("Frodo Baggins", "Ring-bearer", 60, 35, "The One Ring")
+sam = Hero("Sam", 35, 5, "Master of Python", "MacBook Pro")
+frodo = Hero("Frodo Baggins", 60, 35, "Ring-bearer", "The One Ring")
 
 # instances of villain class
 javascript = Villain("JavaScript", 30, 10, "complicated", "Document Object Model")
@@ -144,6 +151,7 @@ while myhero.alive() and myvillain.alive():
         #     myhero.print_status(myvillain)
     elif user_input == "2":
         # myhero.nothing(myvillain)
+        myvillain.attack(myhero)
         if myhero.alive():
             myhero.print_status(myvillain)
     elif user_input == "3":
